@@ -59,14 +59,12 @@ def liulan(str4):
     return m
 
 def close_windows(top):
-    k = os.path.abspath(os.path.join(os.getcwd(), '..'))
+    k = os.path.abspath(os.path.join(os.getcwd(), '..'))+'/image'
     if tkinter.messagebox.askokcancel('退出','确认要退出吗？'):
-        a=['a','b']
-        b=['c','d','e']
-        for i in a:
-            os.remove(k+'/image/'+i+'.ico')
-        for i in b:
-            os.remove(k+'/image/'+i+'.jpg')
+        ls = os.listdir(k)
+        for i in ls:
+            c_path = os.path.join(k, i)
+            os.remove(c_path)
         top.destroy()
 
 
