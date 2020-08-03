@@ -13,9 +13,9 @@ from PIL import Image,ImageTk
 
 
 
-def decodepicture(a,b,c):
-    tmp = open(a+c, 'wb')  # 创建临时的文件
-    tmp.write(base64.b64decode(b))  ##把这个one图片解码出来，写入文件中去。
+def decodepicture(a,b,c):#a为图片的路径，b为图片的base64码，c为图片的.扩展名
+    tmp = open(a+c, 'wb')
+    tmp.write(base64.b64decode(b))
     tmp.close()
 
 #对图片的大小进行设置
