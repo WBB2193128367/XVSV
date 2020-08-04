@@ -1,11 +1,11 @@
 from tkinter import ttk
 from tkinter import *
-import  os
+import os
 import tkinter.filedialog
 from bao import method
 from bao import a_ico as a
-from  bao import  e_jpg as e
-from bao import  c_jpg as c
+from bao import e_jpg as e
+from bao import c_jpg as c
 #对图片的大小进行设置
 root = Tk() #创建主窗体
 root.title("xvideos爬虫!")

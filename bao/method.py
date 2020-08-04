@@ -9,6 +9,7 @@ import os
 import time
 import base64
 from bao import b_ico as b
+from bao import f_jpg as l
 from bao import d_jpg as s
 from PIL import Image, ImageTk
 
