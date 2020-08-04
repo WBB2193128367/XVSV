@@ -1,15 +1,16 @@
 from tkinter import ttk
 from tkinter import *
+import _tkinter
 import tkinter.filedialog
 from tkinter import messagebox
 import requests
 import re
 import os
 import time
-import  base64
-from bao import  b_ico as b
+import base64
+from bao import b_ico as b
 from bao import d_jpg as s
-from PIL import Image,ImageTk
+from PIL import Image, ImageTk
 
 
 
@@ -103,6 +104,7 @@ def get_photo(entry,entry1,entry2,entry3,str4,combobox,combobox1):
 
         p = int(entry1.get())
         count=0
+        account=0
         for i in range(int(entry2.get()), int(entry3.get())):
 
                 m = get_code(combobox,entry,i)
@@ -153,12 +155,16 @@ def get_photo(entry,entry1,entry2,entry3,str4,combobox,combobox1):
                                         '■' * int(size1 * 50 / content_size), float(size1 / content_size * 100)), end='')
                         end = time.time()
 
-                    except:
+                    except requests.exceptions.ConnectionError:
+
                         print("\n")
                         print("此视频下载出现异常，正在跳过………………")
                         print("\n")
                         count += 1
                         continue
+                    except _tkinter.TclError:
+                        account+=1
+                        break
                     else:
                         print('\n' + '第' + str(p) + '个视频下载完成! 用时%.2f秒' % (end - start))
                         p+=1
@@ -167,10 +173,14 @@ def get_photo(entry,entry1,entry2,entry3,str4,combobox,combobox1):
                 print('\n')
                 print('第' + str(i) + '页的视频全部下载完成！')
                 print('\n')
-        if count<27:
-            tkinter.messagebox.showinfo('提示!','全部视频已下载完成')
+                if account != 0:
+                     break
+
+        if account!=0:
+            tkinter.messagebox.showwarning('警告', '爬取已中断!!!')
+
         else:
-            tkinter.messagebox.showwarning('警告','爬取已中断!!!')
+            tkinter.messagebox.showinfo('提示!','全部视频已下载完成')
         print('全部视频已下载完成')
 
         top.mainloop()
